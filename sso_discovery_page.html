@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Choose Your Sign-In</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg-gradient-start: #060b23;
+      --bg-gradient-end: #111827;
+      --card-bg: #111827;
+      --card-border: rgba(255, 255, 255, 0.08);
+      --primary: #3b82f6;
+      --primary-hover: #2563eb;
+      --secondary: #10b981;
+      --secondary-hover: #059669;
+      --text-main: #f9fafb;
+      --text-subtle: #9ca3af;
+      --shadow-soft: 0 24px 60px rgba(15, 23, 42, 0.85);
+      --radius-xl: 18px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: radial-gradient(circle at top left, #1d4ed8 0, transparent 55%),
+                  radial-gradient(circle at bottom right, #10b981 0, transparent 55%),
+                  linear-gradient(145deg, var(--bg-gradient-start), var(--bg-gradient-end));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      color: var(--text-main);
+    }
+
+    .card {
+      width: 100%;
+      max-width: 480px;
+      background: var(--card-bg);
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--card-border);
+      box-shadow: var(--shadow-soft);
+      padding: 28px 26px 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top, rgba(59, 130, 246, 0.25), transparent 55%);
+      opacity: 0.6;
+      pointer-events: none;
+    }
+
+    .card-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-subtle);
+      margin-bottom: 14px;
+    }
+
+    .badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.25);
+    }
+
+    h1 {
+      font-size: 22px;
+      line-height: 1.25;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      font-size: 13px;
+      color: var(--text-subtle);
+      margin-bottom: 22px;
+    }
+
+    .button-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 14px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-size: 14px;
+      border: 1px solid transparent;
+      transition: transform 0.08s ease, box-shadow 0.08s ease,
+                  background-color 0.08s ease, border-color 0.08s ease;
+      cursor: pointer;
+      will-change: transform;
+    }
+
+    .btn span.label {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+    }
+
+    .btn span.title {
+      font-weight: 600;
+    }
+
+    .btn span.caption {
+      font-size: 11px;
+      color: rgba(249, 250, 251, 0.7);
+    }
+
+    .btn .chevron {
+      font-size: 16px;
+      opacity: 0.85;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--primary-hover));
+      box-shadow: 0 10px 30px rgba(37, 99, 235, 0.55);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(135deg, var(--primary-hover), var(--primary));
+      transform: translateY(-1px);
+      box-shadow: 0 14px 35px rgba(37, 99, 235, 0.7);
+    }
+
+    .btn-secondary {
+      background: rgba(15, 23, 42, 0.96);
+      border-color: rgba(148, 163, 184, 0.5);
+      color: var(--text-main);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(15, 23, 42, 1);
+      border-color: rgba(148, 163, 184, 0.9);
+      transform: translateY(-1px);
+      box-shadow: 0 12px 28px rgba(15, 23, 42, 0.9);
+    }
+
+    .helper-text {
+      font-size: 11px;
+      color: var(--text-subtle);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .helper-dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 999px;
+      background: rgba(148, 163, 184, 0.9);
+    }
+
+    @media (min-width: 480px) {
+      .card {
+        padding: 30px 30px 26px;
+      }
+
+      h1 {
+        font-size: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="card-inner">
+      <div class="badge">
+        <span class="badge-dot"></span>
+        Secure Single Sign-On
+      </div>
+
+      <h1>How would you like to sign in?</h1>
+      <p class="subtitle">
+        Choose the environment that matches your account type. Your selection will redirect
+        you to the correct login experience.
+      </p>
+
+      <div class="button-group">
+        <!-- Commercial / Org 1 -->
+        <a
+          id="IdOfLink1"
+          class="btn btn-primary"
+          href="https://example.com/commercial-sso"  <!-- REPLACE WITH COMMERCIAL REDIRECT URL -->
+        >
+          <span class="label">
+            <span class="title">Log in as Commercial User</span>
+            <span class="caption">Standard enterprise production environment</span>
+          </span>
+          <span class="chevron">➜</span>
+        </a>
+
+        <!-- GCC / Org 2 -->
+        <a
+          id="IdOfLink2"
+          class="btn btn-secondary"
+          href="https://example.com/gcc-sso"  <!-- REPLACE WITH GCC REDIRECT URL -->
+        >
+          <span class="label">
+            <span class="title">Log in as GCC User</span>
+            <span class="caption">Government Community Cloud environment</span>
+          </span>
+          <span class="chevron">➜</span>
+        </a>
+      </div>
+
+      <div class="helper-text">
+        <span class="helper-dot"></span>
+        Not sure which to choose? Use the option provided by your IT or security team.
+      </div>
+    </div>
+  </div>
+</body>
+</html>
